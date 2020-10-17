@@ -35,7 +35,7 @@ def create_database(datasource, dbname: str = "transactions") -> None:
         raise ValueError(f"{datasource} must be a CSV filename or Pandas.DataFrame")
 
     s = create_engine(f"sqlite:///database/{dbname}.db")
-    df.to_sql(name=dbname, con=s, if_exists="replace", index=False)
+    df.to_sql(name=dbname, con=s, if_exists="replace", index=True)
 
 
 if __name__ == "__main__":
