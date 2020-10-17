@@ -14,12 +14,13 @@ def sort_csv(filename):
     df["Amount (total)"] = df["Amount (total)"].str.strip("$")
     df["Note"] = df["Note"].str.capitalize()
     df.columns = df.columns.str.replace(r"(\()|(\))", "", regex=True).str.strip(" ").str.replace(" ", "_").str.lower()
+    df = df.rename({"from": "sender", "id": "transaction_id", "type": "transaction_type", "to": "recipient"}, axis=1)
 
     df.sort_values('datetime')
     return df
 
 
-def create_database(datasource, dbname: str = "transactions", tablename: str = "") -> None:
+def create_database(datasource, dbname: str = "transactions") -> None:
     """
     Generates a database from the datasource
     :param datasource: CSV Filename or Pandas Dataframe
@@ -34,9 +35,7 @@ def create_database(datasource, dbname: str = "transactions", tablename: str = "
         raise ValueError(f"{datasource} must be a CSV filename or Pandas.DataFrame")
 
     s = create_engine(f"sqlite:///database/{dbname}.db")
-    if tablename == "":
-        tablename = dbname
-    df.to_sql(name=tablename, con=s, if_exists="replace", index=False)
+    df.to_sql(name=dbname, con=s, if_exists="replace", index=False)
 
 
 if __name__ == "__main__":
