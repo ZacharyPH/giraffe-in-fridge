@@ -13,7 +13,7 @@ def sort_csv(filename):
     df.update(df[["Destination", "Funding Source"]].fillna(""))
     df["Amount (total)"] = df["Amount (total)"].str.strip("$")
     df["Note"] = df["Note"].str.capitalize()
-    df.columns = df.columns.str.replace(r"\([^)]*\)", "").str.strip(" ").str.replace(" ", "_").str.lower()
+    df.columns = df.columns.str.replace(r"(\()|(\))", "", regex=True).str.strip(" ").str.replace(" ", "_").str.lower()
 
     df.sort_values('datetime')
     return df
