@@ -128,7 +128,7 @@ class RegisterForm(Form):
 	confirm = PasswordField('Repeat Password')
 	firstname = TextField('First Name', validators=[validators.Required(), validators.Length(min=8, max=32, message="Password must be between 8 and 32 characters long")])
 	lastname = TextField('Last Name', validators=[validators.Required()])
-	submit = SubmitField('Submit')
+	submit = SubmitField('Register Now')
 
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
