@@ -28,7 +28,7 @@ DATABASE_PATH = 'sqlite:///database/giraffe.db'
 
 UPLOAD_FOLDER = '/static/images'
 # only allow images to be uploaded
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['csv'])
 def allowed_file(filename):
 	return '.' in filename and \
 		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -169,6 +169,24 @@ def login():
 		else:
 			flash("No user with that email/password combo", category='red')
 	return render_template('login.html', form=form, company=COMPANY)
+
+@app.route('/uploadcsv', methods=['POST'])
+def upload_file():
+	# check if the post request has the file part
+	if 'file' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	file = request.files['file']
+	# if user does not select file, browser also
+	# submit an empty part without filename
+	if file.filename == '':
+		flash('No selected file')
+		return redirect(request.url)
+	if file and allowed_file(file.filename):
+		filename = secure_filename(file.filename)
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		return redirect(url_for('uploaded_file', filename=filename))
+	return redirect(request.url)
 
 @app.route('/dashboard')
 @login_required
