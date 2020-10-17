@@ -24,7 +24,7 @@ from decimal import *
 
 app = Flask(__name__)
 
-DATABASE_PATH = 'sqlite:///database/giraffe.db'
+DATABASE_PATH = 'sqlite:///database/venmodata.db'
 
 UPLOAD_FOLDER = '/static/images'
 # only allow images to be uploaded
@@ -72,7 +72,7 @@ def get_user(ident):
 	return User.query.get(int(ident))
 
 class User(db.Model, UserMixin):
-	__tablename__ = 'Users'
+	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(32))
 	firstname = db.Column(db.String(32))
@@ -144,7 +144,7 @@ class RegisterForm(Form):
 			return True
 		return False
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
 	form = RegisterForm()
 	if form.validate_on_submit():
