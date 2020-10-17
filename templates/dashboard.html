@@ -10,8 +10,24 @@ Dashboard
   Welcome back, {{ current_user.firstname }} {{ current_user.lastname }}!
  </h3><br/>
 
-  {% block content %}
-  <span>Here is content</span>
+ 	<div class="w-1/5 inline-block">
+ 	</div>
+
+	<div class="w-3/5 inline-block">
+	  {% block content %}
+	    <div class="table w-full">
+	  		<div class="table-row-group">
+		  		<div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell bg-gray-300 text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+		  	</div>
+		  	{% for row in transactions %}
+		  	{% endfor %}
+	  	</div>
+	</div>
+
+	<div class="w-1/5 inline-block">
+ 	</div>
 
   {% endblock %}
 
