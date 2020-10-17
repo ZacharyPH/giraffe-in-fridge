@@ -18,8 +18,8 @@ Dashboard
 	    <div class="table w-full">
 	    	<div class="table-header-group bg-gray-300">
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">ID</div>
-	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">From</div>
-	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">To</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Sender</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Recipient</div>
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Note</div>
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Amount</div>
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Date</div>
@@ -32,7 +32,7 @@ Dashboard
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.sender }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.recipient }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.note }}</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">${{ row.amount }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">${{ row.amount_total }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.formatted_date }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.transaction_type }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.status }}</div>

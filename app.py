@@ -95,7 +95,7 @@ class User(db.Model, UserMixin):
 		#return password == self.password
 
 class VenmoData(db.Model):
-	__tablename__ = 'venmodata'
+	__tablename__ = 'transactions'
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(32))
 	transaction_id = db.Column(db.Float())
@@ -105,7 +105,7 @@ class VenmoData(db.Model):
 	note = db.Column(db.String(128))
 	sender = db.Column(db.String(32))
 	recipient = db.Column(db.String(32))
-	amount = db.Column(db.Float())
+	amount_total = db.Column(db.Float())
 	funding_source = db.Column(db.String(32))
 	destination = db.Column(db.String(32))
 	statement_period_venmo_fees = db.Column(db.Float())
@@ -114,10 +114,10 @@ class VenmoData(db.Model):
 
 	@property
 	def formatted_date(self):
-		datetime_object = datetime.datetime.strptime(self.datetime, '%m-%d-%Y %H:%M')
+		datetime_object = datetime.datetime.strptime(self.datetime, '%d-%m-%Y %H:%M')
 		return datetime_object.strftime("%B %d, %Y")
 
-	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
+	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
 		self.username = username
 		self.transaction_id = transaction_id
 		self.datetime = _datetime
@@ -126,7 +126,7 @@ class VenmoData(db.Model):
 		self.note = note
 		self.sender = sender
 		self.recipient = recipient
-		self.amount = amount
+		self.amount_total = amount
 		self.funding_source = funding_source
 		self.destination = destination
 		self.statement_period_venmo_fees = statement_period_venmo_fees
