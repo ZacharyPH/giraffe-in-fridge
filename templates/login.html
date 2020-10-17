@@ -12,10 +12,16 @@ Login
             <p>
                 {{ form.username.label(class_='block text-grey-darker text-sm font-bold') }}<br>
                 {{ form.username(size=32, class_='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline mb-2') }}
+                {% if form.username.errors %}
+                    <ul class="errors">{% for error in form.username.errors %}<li class="text-red-600">{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
             </p>
             <p>
                 {{ form.password.label(class_='block text-grey-darker text-sm font-bold') }}<br>
                 {{ form.password(size=32, class_='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline mb-2') }}
+                {% if form.password.errors %}
+                    <ul class="errors">{% for error in form.password.errors %}<li class="text-red-600">{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
             </p>
         </div>
             

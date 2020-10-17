@@ -107,11 +107,11 @@ class LoginForm(Form):
 		user = User.query.filter_by(
 			username=self.username.data).first()
 		if user is None:
-			self.username.errors.append('Unknown username')
+			self.password.errors = ['Invalid username or password']
 			return False
 
 		if not user.check_password(self.password.data):
-			self.password.errors.append('Invalid password')
+			self.password.errors = ['Invalid username or password']
 			return False
 
 		self.user = user
@@ -222,17 +222,6 @@ def signup():
 		else:
 			flash("Error: Check your inputs", category='red')
 	return render_template('register.html', form=form, company=COMPANY)
-
-@app.route('/contact')
-def contact():
-	form = ContactForm()
-	if form.validate_on_submit():
-		if form.validate():
-			smtp_gmail(form.email, form.subject, form.message)
-			return redirect('/contact')
-		else:
-			flash("Error", category='red')
-	return render_template('contact.html', form=form, company=COMPANY)
 
 @app.route('/about')
 def about():
