@@ -94,6 +94,11 @@ class User(db.Model, UserMixin):
 		return check_password_hash(self.password, password)
 		#return password == self.password
 
+class VenmoData(db.Model):
+	__tablename__ = 'venmodata'
+	id = db.Column(db.Integer, primary_key=True)
+	
+
 class LoginForm(Form):
 	username = TextField('Username', [validators.Required()])
 	password = PasswordField('Password', [validators.Required()])
