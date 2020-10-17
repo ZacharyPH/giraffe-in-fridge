@@ -146,7 +146,17 @@ class RegisterForm(Form):
 
 @app.route('/')
 def home():
-	return render_template('index.html', company=COMPANY)
+	form = RegisterForm()
+	if form.validate_on_submit():
+		if form.validate():
+			user = User(form.username.data, form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+			db.session.add(user)
+			db.session.commit()
+			flash("You're now registered!", category='green')
+			return redirect('/login')
+		else:
+			flash("Error: Check your inputs", category='red')
+	return render_template('index.html', company=COMPANY, form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def admin_login():
