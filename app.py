@@ -118,7 +118,11 @@ class VenmoData(db.Model):
 		datetime_object = datetime.datetime.strptime(self.datetime, '%d-%m-%Y %H:%M')
 		return datetime_object.strftime("%B %d, %Y")
 
-	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
+	@property
+	def formatted_amount_total(self):
+		return '{:0.2f}'.format(self.amount_total)
+
+	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, amount_fee, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
 		self.username = username
 		self.transaction_id = transaction_id
 		self.datetime = _datetime
@@ -127,7 +131,8 @@ class VenmoData(db.Model):
 		self.note = note
 		self.sender = sender
 		self.recipient = recipient
-		self.amount_total = amount
+		self.amount_total = amount_total
+		self.amount_fee = amount_fee
 		self.funding_source = funding_source
 		self.destination = destination
 		self.statement_period_venmo_fees = statement_period_venmo_fees
@@ -266,21 +271,21 @@ def dashboard():
 			if file and allowed_file(file.filename):
 				readcsv = sort_csv(file)
 				for row in readcsv.values:
-					username = row[0]
-					transaction_id = row[1]
-					_datetime = row[2]
-					transaction_type = row[3]
-					status = row[4]
-					note = row[5]
-					sender = row[6]
-					recipient = row[7]
-					amount_total = row[8]
-					amount_fee = row[9]
-					funding_source = row[10]
-					destination = row[11]
-					statement_period_venmo_fees = row[12]
-					terminal_location = row[13]
-					year_to_date_venmo_fees = row[14]
+					username = row[0] or ''
+					transaction_id = row[1] or 0
+					_datetime = row[2] or ''
+					transaction_type = row[3] or ''
+					status = row[4] or ''
+					note = row[5] or ''
+					sender = row[6] or ''
+					recipient = row[7] or ''
+					amount_total = row[8] or 0.0
+					amount_fee = row[9] or 0.0
+					funding_source = row[10] or ''
+					destination = row[11] or ''
+					statement_period_venmo_fees = row[12] or 0
+					terminal_location = row[13] or ''
+					year_to_date_venmo_fees = row[14] or 0
 
 					transaction = VenmoData(username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, amount_fee, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees)
 					db.session.add(transaction)

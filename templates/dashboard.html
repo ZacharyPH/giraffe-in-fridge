@@ -32,7 +32,7 @@ Dashboard
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.sender }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.recipient }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.note }}</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">${{ row.amount_total }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">${{ row.formatted_amount_total }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.formatted_date }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.transaction_type }}</div>
 			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.status }}</div>
@@ -41,7 +41,7 @@ Dashboard
 	  	</div>
 	</div>
 
-	<div class="w-1/10 inline-block absolute ml-2">
+	<div class="w-1/10 inline-block absolute ml-4">
 		<form action="" method="post" enctype="multipart/form-data" novalidate class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         {{ form.hidden_tag() }}
         <div class="mb-4">
