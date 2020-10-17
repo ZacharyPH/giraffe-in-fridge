@@ -16,10 +16,45 @@ Dashboard
 	<div class="w-3/5 inline-block">
 	  {% block content %}
 	    <div class="table w-full">
-	  		<div class="table-row-group">
-		  		<div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell bg-gray-300 text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+	    	<div class="table-header-group bg-gray-300">
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">ID</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">From</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">To</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Note</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Amount</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Date</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Type</div>
+	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Status</div>
+	    	</div>
+	  		<div class="table-row-group bg-gray-300 hover:bg-gray-200">
+		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+		  	</div>
+		  	<div class="table-row-group bg-gray-300 hover:bg-gray-200">
+		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			</div>
+		  	<div class="table-row-group bg-gray-300 hover:bg-gray-200">
+		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
 		  	</div>
 		  	{% for row in transactions %}
 		  	{% endfor %}
