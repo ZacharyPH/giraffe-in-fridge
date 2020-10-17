@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 DATABASE_PATH = 'sqlite:///database/venmodata.db'
 
-UPLOAD_FOLDER = '/static/images'
+UPLOAD_FOLDER = os.path.join(app.instance_path, 'uploads')
 # only allow images to be uploaded
 ALLOWED_EXTENSIONS = set(['csv'])
 def allowed_file(filename):
@@ -184,6 +184,18 @@ class RegisterForm(Form):
 			return True
 		return False
 
+class FileUploadForm(Form):
+	file = FileField('Upload Venmo CSV File', [validators.Required()])
+	submit = SubmitField('Upload')
+
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+
+	def validate(self):
+		if not self.file:
+			return False
+		return True
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	form = RegisterForm()
@@ -220,29 +232,29 @@ def login():
 			flash("No user with that email/password combo", category='red')
 	return render_template('login.html', form=form, company=COMPANY)
 
-@app.route('/uploadcsv', methods=['POST'])
-def upload_file():
-	# check if the post request has the file part
-	if 'file' not in request.files:
-		flash('No file part')
-		return redirect(request.url)
-	file = request.files['file']
-	# if user does not select file, browser also
-	# submit an empty part without filename
-	if file.filename == '':
-		flash('No selected file')
-		return redirect(request.url)
-	if file and allowed_file(file.filename):
-		filename = secure_filename(file.filename)
-		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		return redirect(url_for('uploaded_file', filename=filename))
-	return redirect(request.url)
-
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
+	form = FileUploadForm()
+	if form.validate_on_submit():
+		if form.validate():
+			# check if the post request has the file part)
+			file = request.files['file']
+			# if user does not select file, browser also
+			# submit an empty part without filename
+			if file.filename == '':
+				flash('No selected file', category='red')
+				return redirect(request.url)
+			if file and allowed_file(file.filename):
+				filename = secure_filename(file.filename)
+				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+			flash('Upload successful', category='green')
+			return redirect('/dashboard')
+		else:
+			flash('Upload failed', category='red')
 	data = VenmoData.query.order_by(VenmoData.id).all()
-	return render_template('dashboard.html', company=COMPANY, transactions=data)
+	return render_template('dashboard.html', company=COMPANY, transactions=data, form=form)
 
 @app.route("/logout")
 @login_required
