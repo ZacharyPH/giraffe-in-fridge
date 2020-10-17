@@ -11,7 +11,7 @@ def sort_csv(filename):
     df.drop(["Beginning Balance", "Ending Balance", "Disclaimer"], axis=1, inplace=True)
     df.update(df[["Amount (fee)", "Statement Period Venmo Fees", "Year to Date Venmo Fees"]].fillna(0))
     df.update(df[["Destination", "Funding Source"]].fillna(""))
-    df["Amount (total)"] = df["Amount (total)"].str.strip("$")
+    df["Amount (total)"] = df["Amount (total)"].str.strip("$()")
     df["Note"] = df["Note"].str.capitalize()
     df.columns = df.columns.str.replace(r"(\()|(\))", "", regex=True).str.strip(" ").str.replace(" ", "_").str.lower()
     df = df.rename({"from": "sender", "id": "transaction_id", "type": "transaction_type", "to": "recipient"}, axis=1)
