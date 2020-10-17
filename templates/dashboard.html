@@ -26,37 +26,17 @@ Dashboard
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Type</div>
 	    		<div class="table-cell text-gray-700 px-4 py-2 text-md font-bold">Status</div>
 	    	</div>
+	    	{% for row in transactions %}
 	  		<div class="table-row-group bg-gray-300 hover:bg-gray-200">
-		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.id }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.sender }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.recipient }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.note }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">${{ row.amount }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.formatted_date }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.transaction_type }}</div>
+			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">{{ row.status }}</div>
 		  	</div>
-		  	<div class="table-row-group bg-gray-300 hover:bg-gray-200">
-		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			</div>
-		  	<div class="table-row-group bg-gray-300 hover:bg-gray-200">
-		  		<div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 3</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">A cell with more content</div>
-			    <div class="table-cell text-gray-700 px-4 py-2 text-sm">Cell 2</div>
-		  	</div>
-		  	{% for row in transactions %}
 		  	{% endfor %}
 	  	</div>
 	</div>

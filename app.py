@@ -97,7 +97,42 @@ class User(db.Model, UserMixin):
 class VenmoData(db.Model):
 	__tablename__ = 'venmodata'
 	id = db.Column(db.Integer, primary_key=True)
-	
+	username = db.Column(db.String(32))
+	transaction_id = db.Column(db.Float())
+	datetime = db.Column(db.String(32))
+	transaction_type = db.Column(db.String(32))
+	status = db.Column(db.String(32))
+	note = db.Column(db.String(128))
+	sender = db.Column(db.String(32))
+	recipient = db.Column(db.String(32))
+	amount = db.Column(db.Float())
+	funding_source = db.Column(db.String(32))
+	destination = db.Column(db.String(32))
+	statement_period_venmo_fees = db.Column(db.Float())
+	terminal_location = db.Column(db.String(32))
+	year_to_date_venmo_fees = db.Column(db.Float())
+
+	@property
+	def formatted_date(self):
+		datetime_object = datetime.datetime.strptime(self.datetime, '%m-%d-%Y %H:%M')
+		return datetime_object.strftime("%B %d, %Y")
+
+	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
+		self.username = username
+		self.transaction_id = transaction_id
+		self.datetime = _datetime
+		self.transaction_type = transaction_type
+		self.status = status
+		self.note = note
+		self.sender = sender
+		self.recipient = recipient
+		self.amount = amount
+		self.funding_source = funding_source
+		self.destination = destination
+		self.statement_period_venmo_fees = statement_period_venmo_fees
+		self.terminal_location = terminal_location
+		self.year_to_date_venmo_fees = year_to_date_venmo_fees
+
 
 class LoginForm(Form):
 	username = TextField('Username', [validators.Required()])
@@ -206,7 +241,8 @@ def upload_file():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-	return render_template('dashboard.html', company=COMPANY)
+	data = VenmoData.query.order_by(VenmoData.id).all()
+	return render_template('dashboard.html', company=COMPANY, transactions=data)
 
 @app.route("/logout")
 @login_required
