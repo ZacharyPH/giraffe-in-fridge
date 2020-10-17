@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block body %}
+<br/>
+<h3 class="left-tab">
+  Welcome back, {{ current_user.firstname }} {{ current_user.lastname }}!
+ </h3><br/>
+
+  {% block content %}
+  <span>Here is content</span>
+
+  {% endblock %}
+
+
+{% endblock %}

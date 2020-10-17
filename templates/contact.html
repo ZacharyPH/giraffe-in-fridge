@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block body %}
+<div class="w-full max-w-lg mx-auto">
+    <form action="" method="post" novalidate class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 gradient">
+        <div class="text-center text-5xl my-4">
+            Contact Us
+        </div>
+        <div class="flex text-center text-md w-2/3 mx-auto mb-4">
+            Got a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+        </div>
+        {{ form.hidden_tag() }}
+        <div class="mb-4">
+            <p>
+                {{ form.email.label(class_='block text-white text-sm font-bold') }}<br>
+                {{ form.email(size=32, class_='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-2') }}
+            </p>
+            <p>
+                {{ form.subject.label(class_='block text-white text-sm font-bold') }}<br>
+                {{ form.subject(size=32, class_='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-2') }}
+            </p>
+            <p>
+                {{ form.message.label(class_='block text-white text-sm font-bold') }}<br>
+                {{ form.message(size=32, rows=10, class_='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline mb-2 disable-resize') }}
+            </p>
+            <div class="flex items-center justify-end">
+                {{ form.submit(class_='w-32 bg-blue-darker hover:bg-blue-darkest mt-4 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline') }}
+            </div>
+        </div>
+    </form>
+    <p class="text-center text-grey text-xs">
+    ©2018 {{ company.name }}. All rights reserved.
+  </p>
+</div>
+{% endblock %}
