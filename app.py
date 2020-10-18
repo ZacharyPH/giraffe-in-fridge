@@ -20,6 +20,7 @@ from flask_mail import Mail, Message
 import smtplib
 import string
 import pandas as pd
+import json
 
 from decimal import *
 
@@ -122,6 +123,9 @@ class VenmoData(db.Model):
 	def formatted_amount_total(self):
 		return '{:0.2f}'.format(self.amount_total)
 
+	def as_dict(self):
+		return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 	def __init__(self, username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, amount_fee, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees):
 		self.username = username
 		self.transaction_id = transaction_id
@@ -203,7 +207,7 @@ class FileUploadForm(Form):
 		return True
 
 class SortTableForm(Form):
-	sort_by = SelectField('Sort Transactions', choices=[('id', 'ID ASC'), ('iddesc', 'ID DSC'), ('date', 'Date ASC'), ('datedesc', 'Date DSC')])
+	sort_by = SelectField('Sort Transactions', choices=[('id', 'ID ASC'), ('iddesc', 'ID DSC'), ('date', 'Date ASC'), ('datedesc', 'Date DSC'), ('amount', 'Amount ASC'), ('amountdesc', 'Amount DSC')])
 	submit = SubmitField('Sort')
 
 	def __init__(self, *args, **kwargs):
@@ -322,6 +326,10 @@ def dashboard():
 				data = VenmoData.query.order_by(VenmoData.datetime.asc()).all()
 			elif key == 'datedesc':
 				data = VenmoData.query.order_by(VenmoData.datetime.desc()).all()
+			elif key == 'amount':
+				data = VenmoData.query.order_by(VenmoData.amount_total.asc()).all()
+			elif key == 'amountdesc':
+				data = VenmoData.query.order_by(VenmoData.amount_total.desc()).all()
 		else:
 			data = VenmoData.query.order_by(VenmoData.id).all()
 	else:
