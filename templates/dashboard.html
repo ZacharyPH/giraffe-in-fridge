@@ -10,8 +10,26 @@ Dashboard
   Welcome back, {{ current_user.firstname }} {{ current_user.lastname }}!
  </h3><br/>
 
- 	<div class="w-1/5 inline-block">
+ 	<div class="inline-block absolute ml-4 w-1/6">
+ 		<form action="" method="post" novalidate class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+	        {{ sort_form.hidden_tag() }}
+	        <div class="mb-4">
+	            <p>
+	                {{ sort_form.sort_by.label(class_='block text-grey-darker text-sm font-bold') }}<br>
+	                {{ sort_form.sort_by(class_='w-full bg-gray-200 p-2') }}
+	                {% if sort_form.sort_by.errors %}
+	                    <ul class="errors">{% for error in sort_form.sort_by.errors %}<li class="text-red-600">{{ error }}</li>{% endfor %}</ul>
+	                {% endif %}
+	            </p>
+	        </div>
+	            
+	        <div class="flex items-center justify-between">
+	            {{ sort_form.submit(class_='bg-blue-400 hover:bg-blue-200 text-white font-bold py-2 px-2 rounded mt-2 focus:outline-none focus:shadow-outline mb-2 w-1/2')  }}
+	        </div>
+	    </form>
  	</div>
+
+ 	<div class="w-1/5 inline-block"></div>
 
 	<div class="w-3/5 inline-block">
 	  {% block content %}
@@ -43,21 +61,21 @@ Dashboard
 
 	<div class="w-1/10 inline-block absolute ml-4">
 		<form action="" method="post" enctype="multipart/form-data" novalidate class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {{ form.hidden_tag() }}
-        <div class="mb-4">
-            <p>
-                {{ form.file.label(class_='block text-grey-darker text-sm font-bold') }}<br>
-                {{ form.file() }}
-                {% if form.file.errors %}
-                    <ul class="errors">{% for error in form.file.errors %}<li class="text-red-600">{{ error }}</li>{% endfor %}</ul>
-                {% endif %}
-            </p>
-        </div>
-            
-        <div class="flex items-center justify-between">
-            {{ form.submit(class_='bg-blue-400 hover:bg-blue-200 text-white font-bold py-2 px-2 rounded mt-2 focus:outline-none focus:shadow-outline mb-2 w-1/2')  }}
-        </div>
-    </form>
+	        {{ form.hidden_tag() }}
+	        <div class="mb-4">
+	            <p>
+	                {{ form.file.label(class_='block text-grey-darker text-sm font-bold') }}<br>
+	                {{ form.file() }}
+	                {% if form.file.errors %}
+	                    <ul class="errors">{% for error in form.file.errors %}<li class="text-red-600">{{ error }}</li>{% endfor %}</ul>
+	                {% endif %}
+	            </p>
+	        </div>
+	            
+	        <div class="flex items-center justify-between">
+	            {{ form.submit(class_='bg-blue-400 hover:bg-blue-200 text-white font-bold py-2 px-2 rounded mt-2 focus:outline-none focus:shadow-outline mb-2 w-1/2')  }}
+	        </div>
+	    </form>
  	</div>
 
   {% endblock %}

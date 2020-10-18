@@ -202,6 +202,18 @@ class FileUploadForm(Form):
 			return False
 		return True
 
+class SortTableForm(Form):
+	sort_by = SelectField('Sort Transactions', choices=[('id', 'ID ASC'), ('iddesc', 'ID DSC'), ('date', 'Date ASC'), ('datedesc', 'Date DSC')])
+	submit = SubmitField('Sort')
+
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+
+	def validate(self):
+		if not self.sort_by:
+			return False
+		return True
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	form = RegisterForm()
@@ -259,45 +271,63 @@ def sort_csv(file):
 @login_required
 def dashboard():
 	form = FileUploadForm()
-	if form.validate_on_submit():
-		if form.validate():
-			# check if the post request has the file part)
-			file = request.files['file']
-			# if user does not select file, browser also
-			# submit an empty part without filename
-			if file.filename == '':
-				flash('No selected file', category='red')
-				return redirect(request.url)
-			if file and allowed_file(file.filename):
-				readcsv = sort_csv(file)
-				for row in readcsv.values:
-					username = row[0] or ''
-					transaction_id = row[1] or 0
-					_datetime = row[2] or ''
-					transaction_type = row[3] or ''
-					status = row[4] or ''
-					note = row[5] or ''
-					sender = row[6] or ''
-					recipient = row[7] or ''
-					amount_total = row[8] or 0.0
-					amount_fee = row[9] or 0.0
-					funding_source = row[10] or ''
-					destination = row[11] or ''
-					statement_period_venmo_fees = row[12] or 0
-					terminal_location = row[13] or ''
-					year_to_date_venmo_fees = row[14] or 0
+	if request.files:
+		if form.validate_on_submit():
+			if form.validate():
+				# check if the post request has the file part)
+				file = request.files['file']
+				# if user does not select file, browser also
+				# submit an empty part without filename
+				if file.filename == '':
+					flash('No selected file', category='red')
+					return redirect(request.url)
+				if file and allowed_file(file.filename):
+					readcsv = sort_csv(file)
+					for row in readcsv.values:
+						username = row[0] or ''
+						transaction_id = row[1] or 0
+						_datetime = row[2] or ''
+						transaction_type = row[3] or ''
+						status = row[4] or ''
+						note = row[5] or ''
+						sender = row[6] or ''
+						recipient = row[7] or ''
+						amount_total = row[8] or 0.0
+						amount_fee = row[9] or 0.0
+						funding_source = row[10] or ''
+						destination = row[11] or ''
+						statement_period_venmo_fees = row[12] or 0
+						terminal_location = row[13] or ''
+						year_to_date_venmo_fees = row[14] or 0
 
-					transaction = VenmoData(username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, amount_fee, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees)
-					db.session.add(transaction)
+						transaction = VenmoData(username, transaction_id, _datetime, transaction_type, status, note, sender, recipient, amount_total, amount_fee, funding_source, destination, statement_period_venmo_fees, terminal_location, year_to_date_venmo_fees)
+						db.session.add(transaction)
 
-				db.session.commit()
+					db.session.commit()
 
-			flash('Upload successful', category='green')
-			return redirect('/dashboard')
+				flash('Upload successful', category='green')
+				return redirect('/dashboard')
+			else:
+				flash('Upload failed', category='red')
+
+	sort_form = SortTableForm()
+	if sort_form.validate_on_submit():
+		if sort_form.validate():
+			key = sort_form.sort_by.data
+			if key == 'id':
+				data = VenmoData.query.order_by(VenmoData.id.asc()).all()
+			elif key == 'iddesc':
+				data = VenmoData.query.order_by(VenmoData.id.desc()).all()
+			elif key == 'date':
+				data = VenmoData.query.order_by(VenmoData.datetime.asc()).all()
+			elif key == 'datedesc':
+				data = VenmoData.query.order_by(VenmoData.datetime.desc()).all()
 		else:
-			flash('Upload failed', category='red')
-	data = VenmoData.query.order_by(VenmoData.id).all()
-	return render_template('dashboard.html', company=COMPANY, transactions=data, form=form)
+			data = VenmoData.query.order_by(VenmoData.id).all()
+	else:
+		data = VenmoData.query.order_by(VenmoData.id).all()
+
+	return render_template('dashboard.html', company=COMPANY, transactions=data, form=form, sort_form=sort_form)
 
 @app.route("/logout")
 @login_required
