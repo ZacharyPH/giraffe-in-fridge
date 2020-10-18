@@ -1,21 +1,21 @@
 Username,ID,Datetime,Type,Status,Note,From,To,Amount (total),Amount (fee),Funding Source,Destination,Beginning Balance,Ending Balance,Statement Period Venmo Fees,Terminal Location,Year to Date Venmo Fees,Disclaimer
-Acts-Fellowship-Church,,,,,,,,,,,,$28.35 ,,,,,
-,3.08956E+18,2020-09-02T18:40:18,Payment,Complete,offering and tithe,Jennifer Suriadinata,Acts-Fellowship-Church,$67.00 ,,,Venmo balance,,,,Venmo,,
-,3.09698E+18,2020-09-13T00:25:55,Payment,Complete,offering,Grace Oh,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,3.10251E+18,2020-09-20T15:28:56,Payment,Complete,Tithe + offering,Elizabeth Oh,Acts-Fellowship-Church,$91.00 ,,,Venmo balance,,,,Venmo,,
-,3.10257E+18,2020-09-20T17:23:55,Payment,Complete,offering,Jaeho Jang,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,3.1026E+18,2020-09-20T18:31:32,Payment,Complete,offering,Elizabeth Oh,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,3.10679E+18,2020-09-26T13:17:00,Payment,Complete,Reimbursment,Acts-Fellowship-Church,Seoyon Lee,($100.00),,"Bank Of America, N.a. Personal Checking *6238",,,,,Venmo,,
-,3.10693E+18,2020-09-26T17:51:45,Payment,Complete,Offering,Jessica Ye,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,3.10695E+18,2020-09-26T18:27:22,Payment,Complete,AFN chicken,Seoyon Lee,Acts-Fellowship-Church,$3.00 ,,,Venmo balance,,,,Venmo,,
-,3.10695E+18,2020-09-26T18:38:06,Payment,Complete,AFN dinner,Stephanie Cho,Acts-Fellowship-Church,$3.00 ,,,Venmo balance,,,,Venmo,,
-,3.10699E+18,2020-09-26T19:55:58,Payment,Complete,AFN dinner,Natalie Pang,Acts-Fellowship-Church,$3.00 ,,,Venmo balance,,,,Venmo,,
-,3.10701E+18,2020-09-26T20:29:37,Payment,Complete,AFN food,Esther Kim Ewing,Acts-Fellowship-Church,$3.00 ,,,Venmo balance,,,,Venmo,,
-,3.10702E+18,2020-09-26T20:58:10,Payment,Complete,Offeringg,Sue Jin Park,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,3.10704E+18,2020-09-26T21:30:39,Payment,Complete,tithe september,Rachel Kang,Acts-Fellowship-Church,$79.00 ,,,Venmo balance,,,,Venmo,,
-,3.10704E+18,2020-09-26T21:31:33,Payment,Complete,Reimbursement,Acts-Fellowship-Church,Elizabeth Oh,($100.00),,"Bank Of America, N.a. Personal Checking *6238",,,,,Venmo,,
-,3.10722E+18,2020-09-27T03:35:15,Payment,Complete,offering,Elizabeth Oh,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
-,,,,,,,,,,,,,$283.35 ,$283.35 ,,$0.00 ,"In case of errors or questions about your 
+Example-Church,,,,,,,,,,,,$0.00 ,,,,,
+,3.09E+18,2020-09-02T18:40:18,Payment,Complete,Offering,John Smith,Acts-Fellowship-Church,$7.00 ,,,Venmo balance,,,,Venmo,,
+,3.10E+18,2020-09-13T00:25:55,Payment,Complete,Offering,Sally Jones,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
+,3.10E+18,2020-09-20T15:28:56,Payment,Complete,Tithe,Zachary,Acts-Fellowship-Church,$9.00 ,,,Venmo balance,,,,Venmo,,
+,3.10E+18,2020-09-20T17:23:55,Payment,Complete,January Offering,Austin,Acts-Fellowship-Church,$11.00 ,,,Venmo balance,,,,Venmo,,
+,3.10E+18,2020-09-20T18:31:32,Payment,Complete,Tithe September,Peter,Acts-Fellowship-Church,$10.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T13:17:00,Payment,Complete,Reimbursment,Thomas,John Smith,($81.00),,"Generic Bank, Personal Checking *1234",,,,,Venmo,,
+,3.11E+18,2020-09-26T17:51:45,Payment,Complete,Offering,Rebecca,Acts-Fellowship-Church,$13.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T18:27:22,Payment,Complete,Chicken,James Buchanon,Acts-Fellowship-Church,$12.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T18:38:06,Payment,Complete,Chilling with the boys,Susie Lou,Acts-Fellowship-Church,$13.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T19:55:58,Payment,Complete,Tacos,Andrew Crawford,Acts-Fellowship-Church,$4.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T20:29:37,Payment,Complete,Food,Cindy Beth,Acts-Fellowship-Church,$5.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T20:58:10,Payment,Complete,Tithe,Jin Lu,Acts-Fellowship-Church,$1.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T21:30:39,Payment,Complete,Offering,Hannah Long,Acts-Fellowship-Church,$6.00 ,,,Venmo balance,,,,Venmo,,
+,3.11E+18,2020-09-26T21:31:33,Payment,Complete,Reimbursement,Example-Church,Susie Lou,($45.00),,"Generic Bank, Personal Checking *1234",,,,,Venmo,,
+,3.11E+18,2020-09-27T03:35:15,Payment,Complete,Offering,Kay Stafford,Acts-Fellowship-Church,$6.00 ,,,Venmo balance,,,,Venmo,,
+,,,,,,,,,,,,,,$100.00 ,,$0.00 ,"In case of errors or questions about your 
         electronic transfers:
         - Telephone us at 855-812-4430
         - Write the Venmo Error Resolution Department at 
