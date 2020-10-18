@@ -237,6 +237,7 @@ def login():
 			flash("No user with that email/password combo", category='red')
 	return render_template('login.html', form=form, company=COMPANY)
 
+
 def sort_csv(file):
     df = pd.read_csv(file)
     username = df.iloc[0, 0]
@@ -253,6 +254,7 @@ def sort_csv(file):
 
     df.sort_values('datetime')
     return df
+
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
