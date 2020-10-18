@@ -1,6 +1,5 @@
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user, UserMixin
 from flask import Flask,jsonify,request,render_template,Response,flash,redirect,url_for
-from flask_restless import APIManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_wtf import Form
@@ -14,10 +13,6 @@ from sqlalchemy import create_engine
 from werkzeug.utils import secure_filename
 import os
 import uuid
-
-from flask_mail import Mail, Message
-
-import smtplib
 import string
 import pandas as pd
 import json
@@ -36,19 +31,7 @@ def allowed_file(filename):
 		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 app = Flask(__name__)
-
-# app.config.update(dict(
-# 	DEBUG = True,
-# 	MAIL_SERVER = 'smtp.gmail.com',
-# 	MAIL_PORT = 587,
-# 	MAIL_USE_TLS = True,
-# 	MAIL_USE_SSL = False,
-# 	MAIL_USERNAME = 'asikerd@gmail.com',
-# 	MAIL_PASSWORD = 'CheesePuppy',
-# ))
-
 db = SQLAlchemy(app)
-# mail = Mail(app)
 
 app.config.update(dict(
 	SECRET_KEY="powerful secretkey",
@@ -367,9 +350,6 @@ def page_not_found(e):
 
 
 login_manager.init_app(app)
-
-manager = APIManager(app, flask_sqlalchemy_db=db)
-manager.create_api(User, methods=['GET'],results_per_page=10)
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True)
